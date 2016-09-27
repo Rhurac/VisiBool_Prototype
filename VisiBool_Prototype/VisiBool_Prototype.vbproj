@@ -70,13 +70,21 @@
     <Import Include="System.Threading.Tasks" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="frmMain.vb">
+    <Compile Include="Classes\cGlobals.vb" />
+    <Compile Include="Forms\dlgFunctionName.Designer.vb">
+      <DependentUpon>dlgFunctionName.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\dlgFunctionName.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmMain.Designer.vb">
+    <Compile Include="Forms\frmMain.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\frmMain.Designer.vb">
       <DependentUpon>frmMain.vb</DependentUpon>
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Interfaces\IDisplay.vb" />
     <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="My Project\Application.Designer.vb">
       <AutoGen>True</AutoGen>
@@ -92,9 +100,30 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <Compile Include="UserControls\ctlSplitHorizontal.Designer.vb">
+      <DependentUpon>ctlSplitHorizontal.vb</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\ctlSplitHorizontal.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\ctlSplitTabbed.Designer.vb">
+      <DependentUpon>ctlSplitTabbed.vb</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\ctlSplitTabbed.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\ctlSplitVertical.Designer.vb">
+      <DependentUpon>ctlSplitVertical.vb</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\ctlSplitVertical.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="frmMain.resx">
+    <EmbeddedResource Include="Forms\dlgFunctionName.resx">
+      <DependentUpon>dlgFunctionName.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\frmMain.resx">
       <DependentUpon>frmMain.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="My Project\Resources.resx">
@@ -102,6 +131,15 @@
       <LastGenOutput>Resources.Designer.vb</LastGenOutput>
       <CustomToolNamespace>My.Resources</CustomToolNamespace>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\ctlSplitHorizontal.resx">
+      <DependentUpon>ctlSplitHorizontal.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\ctlSplitTabbed.resx">
+      <DependentUpon>ctlSplitTabbed.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\ctlSplitVertical.resx">
+      <DependentUpon>ctlSplitVertical.vb</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
@@ -116,8 +154,9 @@
     </None>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
-    <Content Include="Images\V.ico" />
+    <None Include="Resources\V.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
