@@ -34,7 +34,7 @@ Partial Class frmMain
         Dim TreeNode9 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Flip Flops", New System.Windows.Forms.TreeNode() {TreeNode5, TreeNode6, TreeNode7, TreeNode8})
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmMain))
         Me.tlpMain = New System.Windows.Forms.TableLayoutPanel()
-        Me.tsMain = New System.Windows.Forms.MenuStrip()
+        Me.MainMenuStrip = New System.Windows.Forms.MenuStrip()
         Me.tsiFile = New System.Windows.Forms.ToolStripMenuItem()
         Me.NewToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.OpenToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
@@ -59,7 +59,7 @@ Partial Class frmMain
         Me.tabLibrary = New System.Windows.Forms.TabPage()
         Me.tlpLibrary = New System.Windows.Forms.TableLayoutPanel()
         Me.tvLibrary = New System.Windows.Forms.TreeView()
-        Me.cmsLibrary = New System.Windows.Forms.ContextMenuStrip(Me.components)
+        Me.LibraryContextMenu = New System.Windows.Forms.ContextMenuStrip(Me.components)
         Me.miDescription = New System.Windows.Forms.ToolStripMenuItem()
         Me.miImport = New System.Windows.Forms.ToolStripMenuItem()
         Me.miExport = New System.Windows.Forms.ToolStripMenuItem()
@@ -68,15 +68,18 @@ Partial Class frmMain
         Me.pnlPreview = New System.Windows.Forms.Panel()
         Me.btnPreview = New System.Windows.Forms.Button()
         Me.pnlDisplay = New System.Windows.Forms.Panel()
+        Me.FunctionContextMenu = New System.Windows.Forms.ContextMenuStrip(Me.components)
+        Me.ToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
         Me.tlpMain.SuspendLayout()
-        Me.tsMain.SuspendLayout()
+        Me.MainMenuStrip.SuspendLayout()
         Me.tcTabControl.SuspendLayout()
         Me.tabSource.SuspendLayout()
         Me.tlpSource.SuspendLayout()
         Me.tabLibrary.SuspendLayout()
         Me.tlpLibrary.SuspendLayout()
-        Me.cmsLibrary.SuspendLayout()
+        Me.LibraryContextMenu.SuspendLayout()
         Me.pnlPreview.SuspendLayout()
+        Me.FunctionContextMenu.SuspendLayout()
         Me.SuspendLayout()
         '
         'tlpMain
@@ -118,7 +121,7 @@ Partial Class frmMain
         Me.tlpMain.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 2.857143!))
         Me.tlpMain.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 2.857143!))
         Me.tlpMain.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 2.857143!))
-        Me.tlpMain.Controls.Add(Me.tsMain, 0, 0)
+        Me.tlpMain.Controls.Add(Me.MainMenuStrip, 0, 0)
         Me.tlpMain.Controls.Add(Me.tcTabControl, 0, 3)
         Me.tlpMain.Controls.Add(Me.pnlDisplay, 7, 2)
         Me.tlpMain.Dock = System.Windows.Forms.DockStyle.Fill
@@ -164,16 +167,16 @@ Partial Class frmMain
         Me.tlpMain.Size = New System.Drawing.Size(1184, 962)
         Me.tlpMain.TabIndex = 0
         '
-        'tsMain
+        'MainMenuStrip
         '
-        Me.tlpMain.SetColumnSpan(Me.tsMain, 35)
-        Me.tsMain.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.tsiFile, Me.EditToolStripMenuItem, Me.SettingsToolStripMenuItem, Me.ViewToolStripMenuItem})
-        Me.tsMain.Location = New System.Drawing.Point(0, 0)
-        Me.tsMain.Name = "tsMain"
-        Me.tlpMain.SetRowSpan(Me.tsMain, 2)
-        Me.tsMain.Size = New System.Drawing.Size(1184, 24)
-        Me.tsMain.TabIndex = 0
-        Me.tsMain.Text = "MenuStrip1"
+        Me.tlpMain.SetColumnSpan(Me.MainMenuStrip, 35)
+        Me.MainMenuStrip.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.tsiFile, Me.EditToolStripMenuItem, Me.SettingsToolStripMenuItem, Me.ViewToolStripMenuItem})
+        Me.MainMenuStrip.Location = New System.Drawing.Point(0, 0)
+        Me.MainMenuStrip.Name = "MainMenuStrip"
+        Me.tlpMain.SetRowSpan(Me.MainMenuStrip, 2)
+        Me.MainMenuStrip.Size = New System.Drawing.Size(1184, 24)
+        Me.MainMenuStrip.TabIndex = 0
+        Me.MainMenuStrip.Text = "MenuStrip1"
         '
         'tsiFile
         '
@@ -353,7 +356,6 @@ Partial Class frmMain
         Me.lboSource.Dock = System.Windows.Forms.DockStyle.Fill
         Me.lboSource.FormattingEnabled = True
         Me.lboSource.ItemHeight = 18
-        Me.lboSource.Items.AddRange(New Object() {"Function Foo()", "Function Bar()", "Function Baz()"})
         Me.lboSource.Location = New System.Drawing.Point(3, 3)
         Me.lboSource.Name = "lboSource"
         Me.tlpSource.SetRowSpan(Me.lboSource, 20)
@@ -427,7 +429,7 @@ Partial Class frmMain
         'tvLibrary
         '
         Me.tlpLibrary.SetColumnSpan(Me.tvLibrary, 10)
-        Me.tvLibrary.ContextMenuStrip = Me.cmsLibrary
+        Me.tvLibrary.ContextMenuStrip = Me.LibraryContextMenu
         Me.tvLibrary.Dock = System.Windows.Forms.DockStyle.Fill
         Me.tvLibrary.Location = New System.Drawing.Point(3, 3)
         Me.tvLibrary.Name = "tvLibrary"
@@ -454,11 +456,11 @@ Partial Class frmMain
         Me.tvLibrary.Size = New System.Drawing.Size(205, 773)
         Me.tvLibrary.TabIndex = 0
         '
-        'cmsLibrary
+        'LibraryContextMenu
         '
-        Me.cmsLibrary.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.miDescription, Me.miImport, Me.miExport, Me.miCollapse, Me.miExpand})
-        Me.cmsLibrary.Name = "cmsLibrary"
-        Me.cmsLibrary.Size = New System.Drawing.Size(138, 114)
+        Me.LibraryContextMenu.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.miDescription, Me.miImport, Me.miExport, Me.miCollapse, Me.miExpand})
+        Me.LibraryContextMenu.Name = "cmsLibrary"
+        Me.LibraryContextMenu.Size = New System.Drawing.Size(138, 114)
         '
         'miDescription
         '
@@ -519,6 +521,18 @@ Partial Class frmMain
         Me.pnlDisplay.Size = New System.Drawing.Size(947, 902)
         Me.pnlDisplay.TabIndex = 2
         '
+        'FunctionContextMenu
+        '
+        Me.FunctionContextMenu.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripMenuItem1})
+        Me.FunctionContextMenu.Name = "FunctionContextMenu"
+        Me.FunctionContextMenu.Size = New System.Drawing.Size(162, 48)
+        '
+        'ToolStripMenuItem1
+        '
+        Me.ToolStripMenuItem1.Name = "ToolStripMenuItem1"
+        Me.ToolStripMenuItem1.Size = New System.Drawing.Size(161, 22)
+        Me.ToolStripMenuItem1.Text = "Paste in Editor ..."
+        '
         'frmMain
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -526,26 +540,26 @@ Partial Class frmMain
         Me.ClientSize = New System.Drawing.Size(1184, 962)
         Me.Controls.Add(Me.tlpMain)
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
-        Me.MainMenuStrip = Me.tsMain
         Me.Name = "frmMain"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "VisiBool - Editor"
         Me.tlpMain.ResumeLayout(False)
         Me.tlpMain.PerformLayout()
-        Me.tsMain.ResumeLayout(False)
-        Me.tsMain.PerformLayout()
+        Me.MainMenuStrip.ResumeLayout(False)
+        Me.MainMenuStrip.PerformLayout()
         Me.tcTabControl.ResumeLayout(False)
         Me.tabSource.ResumeLayout(False)
         Me.tlpSource.ResumeLayout(False)
         Me.tabLibrary.ResumeLayout(False)
         Me.tlpLibrary.ResumeLayout(False)
-        Me.cmsLibrary.ResumeLayout(False)
+        Me.LibraryContextMenu.ResumeLayout(False)
         Me.pnlPreview.ResumeLayout(False)
+        Me.FunctionContextMenu.ResumeLayout(False)
         Me.ResumeLayout(False)
 
     End Sub
     Friend WithEvents tlpMain As System.Windows.Forms.TableLayoutPanel
-    Friend WithEvents tsMain As System.Windows.Forms.MenuStrip
+    Friend WithEvents MainMenuStrip As System.Windows.Forms.MenuStrip
     Friend WithEvents tsiFile As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents NewToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents OpenToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
@@ -569,7 +583,7 @@ Partial Class frmMain
     Friend WithEvents ViewToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents SplitHorizontalToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents SplitVerticalToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
-    Friend WithEvents cmsLibrary As System.Windows.Forms.ContextMenuStrip
+    Friend WithEvents LibraryContextMenu As System.Windows.Forms.ContextMenuStrip
     Friend WithEvents miDescription As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents miImport As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents miExport As System.Windows.Forms.ToolStripMenuItem
@@ -579,5 +593,7 @@ Partial Class frmMain
     Friend WithEvents lboSource As System.Windows.Forms.ListBox
     Friend WithEvents pnlDisplay As System.Windows.Forms.Panel
     Friend WithEvents TabbedViewToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents FunctionContextMenu As System.Windows.Forms.ContextMenuStrip
+    Friend WithEvents ToolStripMenuItem1 As System.Windows.Forms.ToolStripMenuItem
 
 End Class

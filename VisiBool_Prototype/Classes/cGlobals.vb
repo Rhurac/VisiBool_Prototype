@@ -5,6 +5,39 @@
 Public Class cGlobals
 
     ''' <summary>
+    ''' Enumeration representing names of VisiBoole functions
+    ''' </summary>
+    Enum VFunctions
+        COUNTER
+        DECODER
+        SEVENSEG
+    End Enum
+
+    ''' <summary>
+    ''' Returns function output corresponding to the VFunction enum
+    ''' </summary>
+    ''' <param name="pFunc">VFunction enum to fetch output for</param>
+    ''' <returns>Output corresponding to VFunction enum</returns>
+    Public Shared Function GetFuncOutput(pFunc As VFunctions) As String
+
+        Dim output As String
+
+        Select Case pFunc
+            Case VFunctions.COUNTER
+                output = My.Resources.CounterOutput
+            Case VFunctions.DECODER
+                output = My.Resources.DecoderMuxOutput
+            Case VFunctions.SEVENSEG
+                output = My.Resources.SevenSegOutput
+            Case Else
+                output = ""
+        End Select
+
+        Return output
+
+    End Function
+
+    ''' <summary>
     ''' Generic Lorem Ipsum text 
     ''' </summary>
     ''' <remarks>Used to simulate pushing text to the editor control of the current display</remarks>

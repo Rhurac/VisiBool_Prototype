@@ -26,11 +26,11 @@ Partial Class ctlSplitHorizontal
         Me.rteEditor = New System.Windows.Forms.RichTextBox()
         Me.rteOutput = New System.Windows.Forms.RichTextBox()
         Me.pnlEditorControls = New System.Windows.Forms.TableLayoutPanel()
-        Me.pnlOutputControls = New System.Windows.Forms.TableLayoutPanel()
         Me.btnRun = New System.Windows.Forms.Button()
+        Me.txtIndependentVars = New System.Windows.Forms.TextBox()
+        Me.pnlOutputControls = New System.Windows.Forms.TableLayoutPanel()
         Me.btnTick = New System.Windows.Forms.Button()
         Me.udTickCount = New System.Windows.Forms.NumericUpDown()
-        Me.txtIndependentVars = New System.Windows.Forms.TextBox()
         Me.pnlMain.SuspendLayout()
         Me.pnlEditorControls.SuspendLayout()
         Me.pnlOutputControls.SuspendLayout()
@@ -90,6 +90,26 @@ Partial Class ctlSplitHorizontal
         Me.pnlEditorControls.Size = New System.Drawing.Size(794, 29)
         Me.pnlEditorControls.TabIndex = 2
         '
+        'btnRun
+        '
+        Me.btnRun.Dock = System.Windows.Forms.DockStyle.Right
+        Me.btnRun.Location = New System.Drawing.Point(716, 3)
+        Me.btnRun.Name = "btnRun"
+        Me.btnRun.Size = New System.Drawing.Size(75, 23)
+        Me.btnRun.TabIndex = 0
+        Me.btnRun.Text = "Run"
+        Me.btnRun.UseVisualStyleBackColor = True
+        '
+        'txtIndependentVars
+        '
+        Me.txtIndependentVars.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.txtIndependentVars.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.txtIndependentVars.Location = New System.Drawing.Point(3, 3)
+        Me.txtIndependentVars.Name = "txtIndependentVars"
+        Me.txtIndependentVars.ReadOnly = True
+        Me.txtIndependentVars.Size = New System.Drawing.Size(707, 22)
+        Me.txtIndependentVars.TabIndex = 1
+        '
         'pnlOutputControls
         '
         Me.pnlOutputControls.BackColor = System.Drawing.Color.Transparent
@@ -105,16 +125,6 @@ Partial Class ctlSplitHorizontal
         Me.pnlOutputControls.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
         Me.pnlOutputControls.Size = New System.Drawing.Size(794, 29)
         Me.pnlOutputControls.TabIndex = 3
-        '
-        'btnRun
-        '
-        Me.btnRun.Dock = System.Windows.Forms.DockStyle.Right
-        Me.btnRun.Location = New System.Drawing.Point(716, 3)
-        Me.btnRun.Name = "btnRun"
-        Me.btnRun.Size = New System.Drawing.Size(75, 23)
-        Me.btnRun.TabIndex = 0
-        Me.btnRun.Text = "Run"
-        Me.btnRun.UseVisualStyleBackColor = True
         '
         'btnTick
         '
@@ -133,16 +143,6 @@ Partial Class ctlSplitHorizontal
         Me.udTickCount.Name = "udTickCount"
         Me.udTickCount.Size = New System.Drawing.Size(44, 20)
         Me.udTickCount.TabIndex = 1
-        '
-        'txtIndependentVars
-        '
-        Me.txtIndependentVars.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.txtIndependentVars.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.txtIndependentVars.Location = New System.Drawing.Point(3, 3)
-        Me.txtIndependentVars.Name = "txtIndependentVars"
-        Me.txtIndependentVars.ReadOnly = True
-        Me.txtIndependentVars.Size = New System.Drawing.Size(707, 22)
-        Me.txtIndependentVars.TabIndex = 1
         '
         'ctlSplitHorizontal
         '

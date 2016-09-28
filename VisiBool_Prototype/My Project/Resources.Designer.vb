@@ -61,6 +61,136 @@ Namespace My.Resources
         End Property
         
         '''<summary>
+        '''  Looks up a localized string similar to C3.d = ~C3 C2 C1 C0 + C3 ~C2 + C3 ~C1 + C3 ~C0;
+        '''C2.d = ~C2 C1 C0 + C2 ~C1 + C2 ~C0;
+        '''C1.d = ~C1 C0 + C1 ~C0;
+        '''C0.d = ~C0;
+        '''
+        '''%u{C[3..0]};
+        '''
+        '''d = C3 C2 C1 C0;
+        '''.
+        '''</summary>
+        Friend ReadOnly Property counter() As String
+            Get
+                Return ResourceManager.GetString("counter", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Looks up a localized string similar to C3 .d = C3 C2 C1 C0 + C3 C2 + C3 C1 + C3 C0
+        '''C2 .d = C2 C1 C0 + C2 C1 + C2 C0
+        '''C1 .d = C1 C0 + C1 C0
+        '''C0 .d = C0
+        '''
+        '''00
+        '''
+        '''d = C3 C2 C1 C0 .
+        '''</summary>
+        Friend ReadOnly Property CounterOutput() As String
+            Get
+                Return ResourceManager.GetString("CounterOutput", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Looks up a localized string similar to *S1 S0   %u{S1 S0};
+        '''
+        '''m0 = ~S1 ~S0;
+        '''m1 = ~S1 S0;
+        '''m2 = S1 ~S0;
+        '''m3 = S1 S0;
+        '''
+        '''
+        '''D0 D1 *D2 D3;
+        '''
+        '''F = ~S1 ~S0 D0   +   ~S1 S0 D1   +   S1 ~S0 D2   +   S1 S0 D3; .
+        '''</summary>
+        Friend ReadOnly Property decoder_mux() As String
+            Get
+                Return ResourceManager.GetString("decoder_mux", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Looks up a localized string similar to S1 S0   2
+        '''
+        '''m0 = S1 S0
+        '''m1 = S1 S0
+        '''m2 = S1 S0
+        '''m3 = S1 S0
+        '''
+        '''
+        '''D0 D1 D2 D3
+        '''
+        '''F = S1 S0 D0   +   S1 S0 D1   +   S1 S0 D2   +   S1 S0 D3 .
+        '''</summary>
+        Friend ReadOnly Property DecoderMuxOutput() As String
+            Get
+                Return ResourceManager.GetString("DecoderMuxOutput", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Looks up a localized string similar to w x y z   %b{w x y z}   %h{w x y z};
+        '''
+        '''zero  = ~w ~x ~y ~z;
+        '''one   = ~w ~x ~y z;
+        '''two   = ~w ~x y ~z;
+        '''three = ~w ~x y z;
+        '''four  = ~w x ~y ~z;
+        '''five  = ~w x ~y z;
+        '''six   = ~w x y ~z;
+        '''seven = ~w x y z;
+        '''eight = w ~x ~y ~z;
+        '''nine  = w ~x ~y z;
+        '''diga  = w ~x y ~z;
+        '''digb  = w ~x y z;
+        '''digc  = w x ~y ~z;
+        '''digd  = w x ~y z;
+        '''dige  = w x y ~z;
+        '''digf  = w x y z;
+        '''
+        '''a = zero + two + three + five + six + seven + eight + nine + diga + digc + dige + digf;
+        '''b = zero + one + two + three + four + seven + eight + nine +  [rest of string was truncated]&quot;;.
+        '''</summary>
+        Friend ReadOnly Property seven_seg_display() As String
+            Get
+                Return ResourceManager.GetString("seven_seg_display", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Looks up a localized string similar to w x y z   0000   0
+        '''
+        '''zero  = w x y z
+        '''one   = w x y z
+        '''two   = w x y z
+        '''three = w x y z
+        '''four  = w x y z
+        '''five  = w x y z
+        '''six   = w x y z
+        '''seven = w x y z
+        '''eight = w x y z
+        '''nine  = w x y z
+        '''diga  = w x y z
+        '''digb  = w x y z
+        '''digc  = w x y z
+        '''digd  = w x y z
+        '''dige  = w x y z
+        '''digf  = w x y z
+        '''
+        '''a = zero + two + three + five + six + seven + eight + nine + diga + digc + dige + digf
+        '''b = zero + one + two + three + four + seven + eight + nine + diga + digd
+        '''c = zero + one + three + four + five + six + seven + e [rest of string was truncated]&quot;;.
+        '''</summary>
+        Friend ReadOnly Property SevenSegOutput() As String
+            Get
+                Return ResourceManager.GetString("SevenSegOutput", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
         '''  Looks up a localized resource of type System.Drawing.Icon similar to (Icon).
         '''</summary>
         Friend ReadOnly Property V() As System.Drawing.Icon
