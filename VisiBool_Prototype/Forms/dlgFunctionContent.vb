@@ -7,7 +7,7 @@ Public Class dlgFunctionContent
     ''' <summary>
     ''' Constructs a new instance of dlgFunctionContent
     ''' </summary>
-    Public Sub New(pFunc As VisiBooleFunction)
+    Public Sub New(pFunc As cVisiBooleFunction)
 
         InitializeComponent()
 

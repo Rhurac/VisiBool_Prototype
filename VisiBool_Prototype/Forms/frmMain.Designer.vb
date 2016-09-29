@@ -23,15 +23,6 @@ Partial Class frmMain
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
-        Dim TreeNode1 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("4 Bit Adder")
-        Dim TreeNode2 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("8 Bit Adder")
-        Dim TreeNode3 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("16 Bit Adder")
-        Dim TreeNode4 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Adders", New System.Windows.Forms.TreeNode() {TreeNode1, TreeNode2, TreeNode3})
-        Dim TreeNode5 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("R-S Flip Flop")
-        Dim TreeNode6 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("J-K Flip Flop")
-        Dim TreeNode7 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("D Flip Flop")
-        Dim TreeNode8 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("T Flip Flop")
-        Dim TreeNode9 As System.Windows.Forms.TreeNode = New System.Windows.Forms.TreeNode("Flip Flops", New System.Windows.Forms.TreeNode() {TreeNode5, TreeNode6, TreeNode7, TreeNode8})
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmMain))
         Me.tlpMain = New System.Windows.Forms.TableLayoutPanel()
         Me.MainMenuStrip = New System.Windows.Forms.MenuStrip()
@@ -53,32 +44,37 @@ Partial Class frmMain
         Me.SplitVerticalToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.TabbedViewToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.tcTabControl = New System.Windows.Forms.TabControl()
-        Me.tabSource = New System.Windows.Forms.TabPage()
-        Me.tlpSource = New System.Windows.Forms.TableLayoutPanel()
-        Me.lboSource = New System.Windows.Forms.ListBox()
         Me.tabLibrary = New System.Windows.Forms.TabPage()
-        Me.tlpLibrary = New System.Windows.Forms.TableLayoutPanel()
-        Me.tvLibrary = New System.Windows.Forms.TreeView()
+        Me.pnlLibrary = New System.Windows.Forms.TableLayoutPanel()
+        Me.lboLibrary = New System.Windows.Forms.ListBox()
+        Me.TableLayoutPanel1 = New System.Windows.Forms.TableLayoutPanel()
+        Me.btnAddFunc = New System.Windows.Forms.Button()
+        Me.btnDelFunc = New System.Windows.Forms.Button()
+        Me.tabSourceCode = New System.Windows.Forms.TabPage()
+        Me.pnlSource = New System.Windows.Forms.TableLayoutPanel()
+        Me.lboSource = New System.Windows.Forms.ListBox()
+        Me.pnlSourceBtnTray = New System.Windows.Forms.TableLayoutPanel()
+        Me.btnDelSource = New System.Windows.Forms.Button()
+        Me.btnAddSource = New System.Windows.Forms.Button()
+        Me.pnlDisplay = New System.Windows.Forms.Panel()
         Me.LibraryContextMenu = New System.Windows.Forms.ContextMenuStrip(Me.components)
         Me.miDescription = New System.Windows.Forms.ToolStripMenuItem()
         Me.miImport = New System.Windows.Forms.ToolStripMenuItem()
         Me.miExport = New System.Windows.Forms.ToolStripMenuItem()
         Me.miCollapse = New System.Windows.Forms.ToolStripMenuItem()
         Me.miExpand = New System.Windows.Forms.ToolStripMenuItem()
-        Me.pnlPreview = New System.Windows.Forms.Panel()
-        Me.btnPreview = New System.Windows.Forms.Button()
-        Me.pnlDisplay = New System.Windows.Forms.Panel()
         Me.FunctionContextMenu = New System.Windows.Forms.ContextMenuStrip(Me.components)
         Me.ToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
         Me.tlpMain.SuspendLayout()
         Me.MainMenuStrip.SuspendLayout()
         Me.tcTabControl.SuspendLayout()
-        Me.tabSource.SuspendLayout()
-        Me.tlpSource.SuspendLayout()
         Me.tabLibrary.SuspendLayout()
-        Me.tlpLibrary.SuspendLayout()
+        Me.pnlLibrary.SuspendLayout()
+        Me.TableLayoutPanel1.SuspendLayout()
+        Me.tabSourceCode.SuspendLayout()
+        Me.pnlSource.SuspendLayout()
+        Me.pnlSourceBtnTray.SuspendLayout()
         Me.LibraryContextMenu.SuspendLayout()
-        Me.pnlPreview.SuspendLayout()
         Me.FunctionContextMenu.SuspendLayout()
         Me.SuspendLayout()
         '
@@ -287,8 +283,8 @@ Partial Class frmMain
         'tcTabControl
         '
         Me.tlpMain.SetColumnSpan(Me.tcTabControl, 7)
-        Me.tcTabControl.Controls.Add(Me.tabSource)
         Me.tcTabControl.Controls.Add(Me.tabLibrary)
+        Me.tcTabControl.Controls.Add(Me.tabSourceCode)
         Me.tcTabControl.Dock = System.Windows.Forms.DockStyle.Fill
         Me.tcTabControl.Location = New System.Drawing.Point(3, 84)
         Me.tcTabControl.Name = "tcTabControl"
@@ -297,164 +293,188 @@ Partial Class frmMain
         Me.tcTabControl.Size = New System.Drawing.Size(225, 875)
         Me.tcTabControl.TabIndex = 1
         '
-        'tabSource
-        '
-        Me.tabSource.Controls.Add(Me.tlpSource)
-        Me.tabSource.Location = New System.Drawing.Point(4, 27)
-        Me.tabSource.Name = "tabSource"
-        Me.tabSource.Padding = New System.Windows.Forms.Padding(3)
-        Me.tabSource.Size = New System.Drawing.Size(217, 844)
-        Me.tabSource.TabIndex = 0
-        Me.tabSource.Text = "Source Code"
-        Me.tabSource.UseVisualStyleBackColor = True
-        '
-        'tlpSource
-        '
-        Me.tlpSource.CausesValidation = False
-        Me.tlpSource.ColumnCount = 10
-        Me.tlpSource.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 10.0!))
-        Me.tlpSource.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 10.0!))
-        Me.tlpSource.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 10.0!))
-        Me.tlpSource.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 10.0!))
-        Me.tlpSource.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 10.0!))
-        Me.tlpSource.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 10.0!))
-        Me.tlpSource.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 10.0!))
-        Me.tlpSource.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 10.0!))
-        Me.tlpSource.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 10.0!))
-        Me.tlpSource.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 10.0!))
-        Me.tlpSource.Controls.Add(Me.lboSource, 0, 0)
-        Me.tlpSource.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.tlpSource.Location = New System.Drawing.Point(3, 3)
-        Me.tlpSource.Name = "tlpSource"
-        Me.tlpSource.RowCount = 20
-        Me.tlpSource.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 5.0!))
-        Me.tlpSource.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 5.0!))
-        Me.tlpSource.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 5.0!))
-        Me.tlpSource.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 5.0!))
-        Me.tlpSource.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 5.0!))
-        Me.tlpSource.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 5.0!))
-        Me.tlpSource.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 5.0!))
-        Me.tlpSource.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 5.0!))
-        Me.tlpSource.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 5.0!))
-        Me.tlpSource.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 5.0!))
-        Me.tlpSource.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 5.0!))
-        Me.tlpSource.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 5.0!))
-        Me.tlpSource.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 5.0!))
-        Me.tlpSource.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 5.0!))
-        Me.tlpSource.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 5.0!))
-        Me.tlpSource.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 5.0!))
-        Me.tlpSource.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 5.0!))
-        Me.tlpSource.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 5.0!))
-        Me.tlpSource.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 5.0!))
-        Me.tlpSource.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 5.0!))
-        Me.tlpSource.Size = New System.Drawing.Size(211, 838)
-        Me.tlpSource.TabIndex = 0
-        '
-        'lboSource
-        '
-        Me.tlpSource.SetColumnSpan(Me.lboSource, 10)
-        Me.lboSource.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.lboSource.FormattingEnabled = True
-        Me.lboSource.ItemHeight = 18
-        Me.lboSource.Location = New System.Drawing.Point(3, 3)
-        Me.lboSource.Name = "lboSource"
-        Me.tlpSource.SetRowSpan(Me.lboSource, 20)
-        Me.lboSource.Size = New System.Drawing.Size(205, 832)
-        Me.lboSource.TabIndex = 0
-        '
         'tabLibrary
         '
-        Me.tabLibrary.Controls.Add(Me.tlpLibrary)
+        Me.tabLibrary.Controls.Add(Me.pnlLibrary)
         Me.tabLibrary.Location = New System.Drawing.Point(4, 27)
         Me.tabLibrary.Name = "tabLibrary"
         Me.tabLibrary.Padding = New System.Windows.Forms.Padding(3)
         Me.tabLibrary.Size = New System.Drawing.Size(217, 844)
-        Me.tabLibrary.TabIndex = 1
+        Me.tabLibrary.TabIndex = 0
         Me.tabLibrary.Text = "My Library"
         Me.tabLibrary.UseVisualStyleBackColor = True
         '
-        'tlpLibrary
+        'pnlLibrary
         '
-        Me.tlpLibrary.CausesValidation = False
-        Me.tlpLibrary.ColumnCount = 10
-        Me.tlpLibrary.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 10.0!))
-        Me.tlpLibrary.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 10.0!))
-        Me.tlpLibrary.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 14.20455!))
-        Me.tlpLibrary.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 5.113636!))
-        Me.tlpLibrary.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 10.0!))
-        Me.tlpLibrary.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 10.0!))
-        Me.tlpLibrary.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 10.0!))
-        Me.tlpLibrary.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 10.0!))
-        Me.tlpLibrary.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 10.0!))
-        Me.tlpLibrary.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 10.0!))
-        Me.tlpLibrary.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20.0!))
-        Me.tlpLibrary.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20.0!))
-        Me.tlpLibrary.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20.0!))
-        Me.tlpLibrary.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20.0!))
-        Me.tlpLibrary.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20.0!))
-        Me.tlpLibrary.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20.0!))
-        Me.tlpLibrary.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20.0!))
-        Me.tlpLibrary.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20.0!))
-        Me.tlpLibrary.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20.0!))
-        Me.tlpLibrary.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20.0!))
-        Me.tlpLibrary.Controls.Add(Me.tvLibrary, 0, 0)
-        Me.tlpLibrary.Controls.Add(Me.pnlPreview, 0, 19)
-        Me.tlpLibrary.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.tlpLibrary.Location = New System.Drawing.Point(3, 3)
-        Me.tlpLibrary.Name = "tlpLibrary"
-        Me.tlpLibrary.RowCount = 20
-        Me.tlpLibrary.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 5.0!))
-        Me.tlpLibrary.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 5.0!))
-        Me.tlpLibrary.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 5.0!))
-        Me.tlpLibrary.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 5.0!))
-        Me.tlpLibrary.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 5.0!))
-        Me.tlpLibrary.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 5.0!))
-        Me.tlpLibrary.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 5.0!))
-        Me.tlpLibrary.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 5.0!))
-        Me.tlpLibrary.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 5.0!))
-        Me.tlpLibrary.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 5.0!))
-        Me.tlpLibrary.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 5.0!))
-        Me.tlpLibrary.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 5.0!))
-        Me.tlpLibrary.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 5.0!))
-        Me.tlpLibrary.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 5.0!))
-        Me.tlpLibrary.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 5.0!))
-        Me.tlpLibrary.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 5.0!))
-        Me.tlpLibrary.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 5.0!))
-        Me.tlpLibrary.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 5.0!))
-        Me.tlpLibrary.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 5.0!))
-        Me.tlpLibrary.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 5.0!))
-        Me.tlpLibrary.Size = New System.Drawing.Size(211, 838)
-        Me.tlpLibrary.TabIndex = 0
+        Me.pnlLibrary.CausesValidation = False
+        Me.pnlLibrary.ColumnCount = 10
+        Me.pnlLibrary.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 10.0!))
+        Me.pnlLibrary.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 10.0!))
+        Me.pnlLibrary.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 10.0!))
+        Me.pnlLibrary.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 10.0!))
+        Me.pnlLibrary.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 10.0!))
+        Me.pnlLibrary.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 10.0!))
+        Me.pnlLibrary.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 10.0!))
+        Me.pnlLibrary.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 10.0!))
+        Me.pnlLibrary.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 10.0!))
+        Me.pnlLibrary.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 10.0!))
+        Me.pnlLibrary.Controls.Add(Me.lboLibrary, 0, 0)
+        Me.pnlLibrary.Controls.Add(Me.TableLayoutPanel1, 0, 20)
+        Me.pnlLibrary.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.pnlLibrary.Location = New System.Drawing.Point(3, 3)
+        Me.pnlLibrary.Name = "pnlLibrary"
+        Me.pnlLibrary.RowCount = 21
+        Me.pnlLibrary.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 5.0!))
+        Me.pnlLibrary.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 5.0!))
+        Me.pnlLibrary.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 5.0!))
+        Me.pnlLibrary.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 5.0!))
+        Me.pnlLibrary.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 5.0!))
+        Me.pnlLibrary.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 5.0!))
+        Me.pnlLibrary.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 5.0!))
+        Me.pnlLibrary.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 5.0!))
+        Me.pnlLibrary.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 5.0!))
+        Me.pnlLibrary.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 5.0!))
+        Me.pnlLibrary.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 5.0!))
+        Me.pnlLibrary.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 5.0!))
+        Me.pnlLibrary.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 5.0!))
+        Me.pnlLibrary.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 5.0!))
+        Me.pnlLibrary.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 5.0!))
+        Me.pnlLibrary.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 5.0!))
+        Me.pnlLibrary.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 5.0!))
+        Me.pnlLibrary.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 5.0!))
+        Me.pnlLibrary.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 5.0!))
+        Me.pnlLibrary.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 5.0!))
+        Me.pnlLibrary.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 48.0!))
+        Me.pnlLibrary.Size = New System.Drawing.Size(211, 838)
+        Me.pnlLibrary.TabIndex = 0
         '
-        'tvLibrary
+        'lboLibrary
         '
-        Me.tlpLibrary.SetColumnSpan(Me.tvLibrary, 10)
-        Me.tvLibrary.ContextMenuStrip = Me.LibraryContextMenu
-        Me.tvLibrary.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.tvLibrary.Location = New System.Drawing.Point(3, 3)
-        Me.tvLibrary.Name = "tvLibrary"
-        TreeNode1.Name = "tn4BitAdder"
-        TreeNode1.Text = "4 Bit Adder"
-        TreeNode2.Name = "tn8BitAdder"
-        TreeNode2.Text = "8 Bit Adder"
-        TreeNode3.Name = "tn16BitAdder"
-        TreeNode3.Text = "16 Bit Adder"
-        TreeNode4.Name = "tnAdders"
-        TreeNode4.Text = "Adders"
-        TreeNode5.Name = "tnRSFF"
-        TreeNode5.Text = "R-S Flip Flop"
-        TreeNode6.Name = "tnJKFF"
-        TreeNode6.Text = "J-K Flip Flop"
-        TreeNode7.Name = "tnDFF"
-        TreeNode7.Text = "D Flip Flop"
-        TreeNode8.Name = "tnTFF"
-        TreeNode8.Text = "T Flip Flop"
-        TreeNode9.Name = "tnFlipFlops"
-        TreeNode9.Text = "Flip Flops"
-        Me.tvLibrary.Nodes.AddRange(New System.Windows.Forms.TreeNode() {TreeNode4, TreeNode9})
-        Me.tlpLibrary.SetRowSpan(Me.tvLibrary, 19)
-        Me.tvLibrary.Size = New System.Drawing.Size(205, 773)
-        Me.tvLibrary.TabIndex = 0
+        Me.pnlLibrary.SetColumnSpan(Me.lboLibrary, 10)
+        Me.lboLibrary.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.lboLibrary.FormattingEnabled = True
+        Me.lboLibrary.ItemHeight = 18
+        Me.lboLibrary.Location = New System.Drawing.Point(3, 3)
+        Me.lboLibrary.Name = "lboLibrary"
+        Me.pnlLibrary.SetRowSpan(Me.lboLibrary, 20)
+        Me.lboLibrary.Size = New System.Drawing.Size(205, 774)
+        Me.lboLibrary.TabIndex = 0
+        '
+        'TableLayoutPanel1
+        '
+        Me.TableLayoutPanel1.ColumnCount = 2
+        Me.pnlLibrary.SetColumnSpan(Me.TableLayoutPanel1, 10)
+        Me.TableLayoutPanel1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
+        Me.TableLayoutPanel1.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
+        Me.TableLayoutPanel1.Controls.Add(Me.btnAddFunc, 1, 0)
+        Me.TableLayoutPanel1.Controls.Add(Me.btnDelFunc, 0, 0)
+        Me.TableLayoutPanel1.Location = New System.Drawing.Point(3, 783)
+        Me.TableLayoutPanel1.Name = "TableLayoutPanel1"
+        Me.TableLayoutPanel1.RowCount = 1
+        Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
+        Me.TableLayoutPanel1.Size = New System.Drawing.Size(200, 52)
+        Me.TableLayoutPanel1.TabIndex = 1
+        '
+        'btnAddFunc
+        '
+        Me.btnAddFunc.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.btnAddFunc.Location = New System.Drawing.Point(103, 3)
+        Me.btnAddFunc.Name = "btnAddFunc"
+        Me.btnAddFunc.Size = New System.Drawing.Size(94, 46)
+        Me.btnAddFunc.TabIndex = 1
+        Me.btnAddFunc.Text = "&Add " & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "Function"
+        Me.btnAddFunc.UseVisualStyleBackColor = True
+        '
+        'btnDelFunc
+        '
+        Me.btnDelFunc.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.btnDelFunc.Location = New System.Drawing.Point(3, 3)
+        Me.btnDelFunc.Name = "btnDelFunc"
+        Me.btnDelFunc.Size = New System.Drawing.Size(94, 46)
+        Me.btnDelFunc.TabIndex = 2
+        Me.btnDelFunc.Text = "&Remove " & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "Function"
+        Me.btnDelFunc.UseVisualStyleBackColor = True
+        '
+        'tabSourceCode
+        '
+        Me.tabSourceCode.Controls.Add(Me.pnlSource)
+        Me.tabSourceCode.Location = New System.Drawing.Point(4, 27)
+        Me.tabSourceCode.Name = "tabSourceCode"
+        Me.tabSourceCode.Padding = New System.Windows.Forms.Padding(3)
+        Me.tabSourceCode.Size = New System.Drawing.Size(217, 844)
+        Me.tabSourceCode.TabIndex = 1
+        Me.tabSourceCode.Text = "My Source Code"
+        Me.tabSourceCode.UseVisualStyleBackColor = True
+        '
+        'pnlSource
+        '
+        Me.pnlSource.CausesValidation = False
+        Me.pnlSource.ColumnCount = 1
+        Me.pnlSource.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
+        Me.pnlSource.Controls.Add(Me.lboSource, 0, 0)
+        Me.pnlSource.Controls.Add(Me.pnlSourceBtnTray, 0, 1)
+        Me.pnlSource.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.pnlSource.Location = New System.Drawing.Point(3, 3)
+        Me.pnlSource.Name = "pnlSource"
+        Me.pnlSource.RowCount = 2
+        Me.pnlSource.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 92.60143!))
+        Me.pnlSource.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 7.398568!))
+        Me.pnlSource.Size = New System.Drawing.Size(211, 838)
+        Me.pnlSource.TabIndex = 0
+        '
+        'lboSource
+        '
+        Me.lboSource.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.lboSource.ItemHeight = 18
+        Me.lboSource.Location = New System.Drawing.Point(3, 3)
+        Me.lboSource.Name = "lboSource"
+        Me.lboSource.Size = New System.Drawing.Size(205, 770)
+        Me.lboSource.TabIndex = 1
+        '
+        'pnlSourceBtnTray
+        '
+        Me.pnlSourceBtnTray.ColumnCount = 2
+        Me.pnlSourceBtnTray.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
+        Me.pnlSourceBtnTray.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
+        Me.pnlSourceBtnTray.Controls.Add(Me.btnDelSource, 0, 0)
+        Me.pnlSourceBtnTray.Controls.Add(Me.btnAddSource, 1, 0)
+        Me.pnlSourceBtnTray.Location = New System.Drawing.Point(3, 779)
+        Me.pnlSourceBtnTray.Name = "pnlSourceBtnTray"
+        Me.pnlSourceBtnTray.RowCount = 1
+        Me.pnlSourceBtnTray.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
+        Me.pnlSourceBtnTray.Size = New System.Drawing.Size(200, 56)
+        Me.pnlSourceBtnTray.TabIndex = 2
+        '
+        'btnDelSource
+        '
+        Me.btnDelSource.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.btnDelSource.Location = New System.Drawing.Point(3, 3)
+        Me.btnDelSource.Name = "btnDelSource"
+        Me.btnDelSource.Size = New System.Drawing.Size(94, 50)
+        Me.btnDelSource.TabIndex = 0
+        Me.btnDelSource.Text = "&Remove " & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "File"
+        Me.btnDelSource.UseVisualStyleBackColor = True
+        '
+        'btnAddSource
+        '
+        Me.btnAddSource.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.btnAddSource.Location = New System.Drawing.Point(103, 3)
+        Me.btnAddSource.Name = "btnAddSource"
+        Me.btnAddSource.Size = New System.Drawing.Size(94, 50)
+        Me.btnAddSource.TabIndex = 1
+        Me.btnAddSource.Text = "&Add" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "File"
+        Me.btnAddSource.UseVisualStyleBackColor = True
+        '
+        'pnlDisplay
+        '
+        Me.pnlDisplay.BackColor = System.Drawing.Color.Transparent
+        Me.tlpMain.SetColumnSpan(Me.pnlDisplay, 28)
+        Me.pnlDisplay.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.pnlDisplay.Location = New System.Drawing.Point(234, 57)
+        Me.pnlDisplay.Name = "pnlDisplay"
+        Me.tlpMain.SetRowSpan(Me.pnlDisplay, 33)
+        Me.pnlDisplay.Size = New System.Drawing.Size(947, 902)
+        Me.pnlDisplay.TabIndex = 2
         '
         'LibraryContextMenu
         '
@@ -492,40 +512,11 @@ Partial Class frmMain
         Me.miExpand.Size = New System.Drawing.Size(137, 22)
         Me.miExpand.Text = "Expand All"
         '
-        'pnlPreview
-        '
-        Me.tlpLibrary.SetColumnSpan(Me.pnlPreview, 10)
-        Me.pnlPreview.Controls.Add(Me.btnPreview)
-        Me.pnlPreview.Location = New System.Drawing.Point(3, 782)
-        Me.pnlPreview.Name = "pnlPreview"
-        Me.pnlPreview.Size = New System.Drawing.Size(170, 42)
-        Me.pnlPreview.TabIndex = 1
-        '
-        'btnPreview
-        '
-        Me.btnPreview.Location = New System.Drawing.Point(3, 6)
-        Me.btnPreview.Name = "btnPreview"
-        Me.btnPreview.Size = New System.Drawing.Size(164, 33)
-        Me.btnPreview.TabIndex = 0
-        Me.btnPreview.Text = "Preview Image"
-        Me.btnPreview.UseVisualStyleBackColor = True
-        '
-        'pnlDisplay
-        '
-        Me.pnlDisplay.BackColor = System.Drawing.Color.Transparent
-        Me.tlpMain.SetColumnSpan(Me.pnlDisplay, 28)
-        Me.pnlDisplay.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.pnlDisplay.Location = New System.Drawing.Point(234, 57)
-        Me.pnlDisplay.Name = "pnlDisplay"
-        Me.tlpMain.SetRowSpan(Me.pnlDisplay, 33)
-        Me.pnlDisplay.Size = New System.Drawing.Size(947, 902)
-        Me.pnlDisplay.TabIndex = 2
-        '
         'FunctionContextMenu
         '
         Me.FunctionContextMenu.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripMenuItem1})
         Me.FunctionContextMenu.Name = "FunctionContextMenu"
-        Me.FunctionContextMenu.Size = New System.Drawing.Size(162, 48)
+        Me.FunctionContextMenu.Size = New System.Drawing.Size(162, 26)
         '
         'ToolStripMenuItem1
         '
@@ -548,12 +539,13 @@ Partial Class frmMain
         Me.MainMenuStrip.ResumeLayout(False)
         Me.MainMenuStrip.PerformLayout()
         Me.tcTabControl.ResumeLayout(False)
-        Me.tabSource.ResumeLayout(False)
-        Me.tlpSource.ResumeLayout(False)
         Me.tabLibrary.ResumeLayout(False)
-        Me.tlpLibrary.ResumeLayout(False)
+        Me.pnlLibrary.ResumeLayout(False)
+        Me.TableLayoutPanel1.ResumeLayout(False)
+        Me.tabSourceCode.ResumeLayout(False)
+        Me.pnlSource.ResumeLayout(False)
+        Me.pnlSourceBtnTray.ResumeLayout(False)
         Me.LibraryContextMenu.ResumeLayout(False)
-        Me.pnlPreview.ResumeLayout(False)
         Me.FunctionContextMenu.ResumeLayout(False)
         Me.ResumeLayout(False)
 
@@ -574,12 +566,8 @@ Partial Class frmMain
     Friend WithEvents SettingsToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents PreferencesToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents tcTabControl As System.Windows.Forms.TabControl
-    Friend WithEvents tabSource As System.Windows.Forms.TabPage
     Friend WithEvents tabLibrary As System.Windows.Forms.TabPage
-    Friend WithEvents tlpLibrary As System.Windows.Forms.TableLayoutPanel
-    Friend WithEvents tvLibrary As System.Windows.Forms.TreeView
-    Friend WithEvents pnlPreview As System.Windows.Forms.Panel
-    Friend WithEvents btnPreview As System.Windows.Forms.Button
+    Friend WithEvents tabSourceCode As System.Windows.Forms.TabPage
     Friend WithEvents ViewToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents SplitHorizontalToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents SplitVerticalToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
@@ -589,11 +577,19 @@ Partial Class frmMain
     Friend WithEvents miExport As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents miCollapse As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents miExpand As System.Windows.Forms.ToolStripMenuItem
-    Friend WithEvents tlpSource As System.Windows.Forms.TableLayoutPanel
-    Friend WithEvents lboSource As System.Windows.Forms.ListBox
+    Friend WithEvents pnlLibrary As System.Windows.Forms.TableLayoutPanel
     Friend WithEvents pnlDisplay As System.Windows.Forms.Panel
     Friend WithEvents TabbedViewToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents FunctionContextMenu As System.Windows.Forms.ContextMenuStrip
     Friend WithEvents ToolStripMenuItem1 As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents lboLibrary As System.Windows.Forms.ListBox
+    Friend WithEvents pnlSource As System.Windows.Forms.TableLayoutPanel
+    Friend WithEvents lboSource As System.Windows.Forms.ListBox
+    Friend WithEvents pnlSourceBtnTray As System.Windows.Forms.TableLayoutPanel
+    Friend WithEvents btnDelSource As System.Windows.Forms.Button
+    Friend WithEvents btnAddSource As System.Windows.Forms.Button
+    Friend WithEvents TableLayoutPanel1 As System.Windows.Forms.TableLayoutPanel
+    Friend WithEvents btnAddFunc As System.Windows.Forms.Button
+    Friend WithEvents btnDelFunc As System.Windows.Forms.Button
 
 End Class

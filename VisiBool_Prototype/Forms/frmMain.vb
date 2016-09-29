@@ -13,7 +13,13 @@ Public Class frmMain
     ''' <summary>
     ''' User-created VisiBoole Functions
     ''' </summary>
-    Private _myFunctions As New SortedDictionary(Of String, VisiBooleFunction)
+    Private _myFunctions As New SortedDictionary(Of String, cVisiBooleFunction)
+
+    ''' <summary>
+    ''' User-created VisiBoole source code files
+    ''' </summary>
+    ''' <remarks></remarks>
+    Private _mySourceCodes As New SortedDictionary(Of String, cSourceFile)
 
     ''' <summary>
     ''' ContextMenu for the selected function in MyFunctions listbox
@@ -22,9 +28,15 @@ Public Class frmMain
     Private _listboxContextMenu As ContextMenuStrip
 
     ''' <summary>
-    ''' Binding source for the ListBox control
+    ''' Binding source for the user's visiboole functions
     ''' </summary>
-    Private _bindingSource As BindingSource
+    Private _myLibraryBindingSource As BindingSource
+
+    ''' <summary>
+    ''' Binding source for the user's source code files
+    ''' </summary>
+    ''' <remarks></remarks>
+    Private _mySourceCodeBindingSource As BindingSource
 
     ''' <summary>
     ''' Constructs an instance of frmMain
@@ -46,9 +58,13 @@ Public Class frmMain
 
         InitializeVFunctions()
 
+        InitializeVSourceCodes()
+
         InitializeBindings()
 
     End Sub
+
+#Region "Helper Functions"
 
     ''' <summary>
     ''' Replace the current display with the given UserControl
@@ -70,46 +86,97 @@ Public Class frmMain
     End Sub
 
     ''' <summary>
-    ''' Sets up databindings for VisiBoole functions on form startup
+    ''' Loads initial content into Visiboole functions on form load
+    ''' </summary>
+    Private Sub InitializeVFunctions()
+
+        Dim content As String = My.Resources.counter
+        _myFunctions.Add("Function Counter()", New cVisiBooleFunction("Function Counter()", content))
+
+        content = My.Resources.decoder_mux
+        _myFunctions.Add("Function DecoderMux()", New cVisiBooleFunction("Function DecoderMux()", content))
+
+        content = My.Resources.seven_seg_display
+        _myFunctions.Add("Function SevenSegment()", New cVisiBooleFunction("Function SevenSegment()", content))
+
+    End Sub
+
+    ''' <summary>
+    ''' Loads initial content into VisiBoole Source Codes on form load
+    ''' </summary>
+    Private Sub InitializeVSourceCodes()
+
+        Dim content As String = My.Resources.MySourceCodeExample
+        _mySourceCodes.Add("MySourceCodeExample", New cSourceFile("MySourceCodeExample", content))
+
+    End Sub
+
+    ''' <summary>
+    ''' Attaches databindings for ListBox controls on form load
     ''' </summary>
     Private Sub InitializeBindings()
 
-        lboSource.DisplayMember = "Key"
-        lboSource.ValueMember = "Value"
+        AttachLibraryBindings()
 
-        _bindingSource = New BindingSource(_myFunctions, Nothing)
-        lboSource.DataSource = _bindingSource
+        AttachSourceCodeBindings()
+
+    End Sub
+
+    ''' <summary>
+    ''' Sets up databindings for VisiBoole functions on form load
+    ''' </summary>
+    Private Sub AttachLibraryBindings()
+
+        lboLibrary.DisplayMember = "Key"
+        lboLibrary.ValueMember = "Value"
+
+        _myLibraryBindingSource = New BindingSource(_myFunctions, Nothing)
+        lboLibrary.DataSource = _myLibraryBindingSource
 
         _listboxContextMenu = FunctionContextMenu
 
     End Sub
 
     ''' <summary>
-    ''' Refreshes the databindings for the ListBox control
+    ''' Sets up databindings for VisiBoole source codes on form load
     ''' </summary>
-    Private Sub RefreshBindings()
+    ''' <remarks></remarks>
+    Private Sub AttachSourceCodeBindings()
 
-        _bindingSource = New BindingSource(_myFunctions, Nothing)
-        lboSource.DataSource = _bindingSource
-        lboSource.Refresh()
+        lboSource.DisplayMember = "Key"
+        lboSource.ValueMember = "Value"
+
+        _mySourceCodeBindingSource = New BindingSource(_mySourceCodes, Nothing)
+        lboSource.DataSource = _mySourceCodeBindingSource
 
     End Sub
 
     ''' <summary>
-    ''' Loads initial content into Visiboole functions on form load
+    ''' Refreshes the databindings for the library ListBox
     ''' </summary>
-    Private Sub InitializeVFunctions()
+    Private Sub RefreshLibraryBindings()
 
-        Dim content As String = My.Resources.counter
-        _myFunctions.Add("Function Counter()", New VisiBooleFunction("Function Counter()", content))
-
-        content = My.Resources.decoder_mux
-        _myFunctions.Add("Function DecoderMux()", New VisiBooleFunction("Function DecoderMux()", content))
-
-        content = My.Resources.seven_seg_display
-        _myFunctions.Add("Function SevenSegment()", New VisiBooleFunction("Function SevenSegment()", content))
+        _myLibraryBindingSource = New BindingSource(_myFunctions, Nothing)
+        lboLibrary.DataSource = _myLibraryBindingSource
+        lboLibrary.Refresh()
 
     End Sub
+
+    ''' <summary>
+    ''' Refreshes the databindings for the source codes ListBox
+    ''' </summary>
+    ''' <remarks></remarks>
+    Private Sub RefreshSourceCodeBindings()
+
+        _mySourceCodeBindingSource = New BindingSource(_mySourceCodes, Nothing)
+        lboSource.DataSource = _mySourceCodeBindingSource
+        lboSource.Refresh()
+
+    End Sub
+
+#End Region
+
+#Region "Event Handlers"
 
     ''' <summary>
     ''' Display the Split Horizontal UserControl
@@ -118,7 +185,7 @@ Public Class frmMain
 
         If CType(_currentDisplay, UserControl).Tag = "Horizontal" Then Exit Sub
 
-        LoadUserControl(New ctlSplitHorizontal)
+        LoadUserControl(New ctlSplitHorizontal(_currentDisplay.GetInput()))
 
     End Sub
 
@@ -129,7 +196,7 @@ Public Class frmMain
 
         If CType(_currentDisplay, UserControl).Tag = "Vertical" Then Exit Sub
 
-        LoadUserControl(New ctlSplitVertical)
+        LoadUserControl(New ctlSplitVertical(_currentDisplay.GetInput()))
 
     End Sub
 
@@ -140,23 +207,16 @@ Public Class frmMain
 
         If CType(_currentDisplay, UserControl).Tag = "Tabbed" Then Exit Sub
 
-        LoadUserControl(New ctlSplitTabbed)
+        LoadUserControl(New ctlSplitTabbed(_currentDisplay.GetInput()))
 
     End Sub
 
+    ''' <summary>
+    ''' Simulates creating a new project, returning all controls to default state
+    ''' </summary>
     Private Sub NewToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles NewToolStripMenuItem.Click
 
-        Dim dlg As New dlgFunctionName
-
-        Me.Opacity = 0.7
-        If dlg.ShowDialog() = Windows.Forms.DialogResult.Cancel Then
-            Me.Opacity = 1.0
-            Exit Sub
-        End If
-        Me.Opacity = 1.0
-
-        _myFunctions.Add(dlg.FunctionName, New VisiBooleFunction(dlg.FunctionName))
-        RefreshBindings()
+        MessageBox.Show("Selecting new file here would create an entirely new project, with no functions and a default starting source code file", "Notice", MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1)
 
     End Sub
 
@@ -171,8 +231,6 @@ Public Class frmMain
         openFileDialog.Title = "Open File"
 
         openFileDialog.ShowDialog()
-
-        _currentDisplay.DisplayInput(cGlobals.gEditorInput)
 
     End Sub
 
@@ -206,7 +264,7 @@ Public Class frmMain
     ''' <summary>
     ''' Opens a dialog displaying the content of the function
     ''' </summary>
-    Private Sub lboSource_MouseDoubleClick(sender As Object, e As MouseEventArgs) Handles lboSource.MouseDoubleClick
+    Private Sub lboSource_MouseDoubleClick(sender As Object, e As MouseEventArgs) Handles lboLibrary.MouseDoubleClick
 
         Dim index As Integer = CType(sender, ListBox).IndexFromPoint(e.Location)
         If index <> ListBox.NoMatches Then
@@ -219,14 +277,14 @@ Public Class frmMain
     ''' <summary>
     ''' Opens the context menu for the selected listbox item
     ''' </summary>
-    Private Sub lboSource_MouseDown(sender As Object, e As MouseEventArgs) Handles lboSource.MouseDown
+    Private Sub lboSource_MouseDown(sender As Object, e As MouseEventArgs) Handles lboLibrary.MouseDown
 
         If Not e.Button = Windows.Forms.MouseButtons.Right Then Exit Sub
 
-        Dim index As Integer = lboSource.IndexFromPoint(e.Location)
+        Dim index As Integer = lboLibrary.IndexFromPoint(e.Location)
         If index <> ListBox.NoMatches Then
 
-            If index = lboSource.SelectedIndex Then
+            If index = lboLibrary.SelectedIndex Then
                 _listboxContextMenu.Show(Cursor.Position)
             End If
 
@@ -239,8 +297,97 @@ Public Class frmMain
     ''' </summary>
     Private Sub ToolStripMenuItem1_Click(sender As Object, e As EventArgs) Handles ToolStripMenuItem1.Click
 
-        _currentDisplay.AppendInput(lboSource.SelectedValue.Text)
+        _currentDisplay.AppendInput(lboLibrary.SelectedValue.Text)
 
     End Sub
+
+    ''' <summary>
+    ''' Add a new VisiBoole Function to My Library
+    ''' </summary>
+    Private Sub btnAddFunc_Click(sender As Object, e As EventArgs) Handles btnAddFunc.Click
+
+        Dim dlg As New dlgFunctionName
+
+        Me.Opacity = 0.7
+        If dlg.ShowDialog() = Windows.Forms.DialogResult.Cancel Then
+            Me.Opacity = 1.0
+            Exit Sub
+        End If
+        Me.Opacity = 1.0
+
+
+        If _myFunctions.ContainsKey(dlg.FunctionName) Then
+            MessageBox.Show("A VisiBoole Function with this name already exists.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1)
+            Exit Sub
+        End If
+
+        _myFunctions.Add(dlg.FunctionName, New cVisiBooleFunction(dlg.FunctionName))
+        RefreshLibraryBindings()
+
+    End Sub
+
+    ''' <summary>
+    ''' Remove a VisiBoole Function from My Library
+    ''' </summary>
+    Private Sub btnDelFunc_Click(sender As Object, e As EventArgs) Handles btnDelFunc.Click
+
+        If DialogResult.No = MessageBox.Show("This will irreversably destroy this item - do you wish to proceed?", "Confirm", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button1) Then Exit Sub
+
+        _myFunctions.Remove(lboLibrary.SelectedValue.Name)
+
+        RefreshLibraryBindings()
+
+    End Sub
+
+    ''' <summary>
+    ''' 
+    ''' </summary>
+    ''' <param name="sender"></param>
+    ''' <param name="e"></param>
+    ''' <remarks></remarks>
+    Private Sub btnAddSource_Click(sender As Object, e As EventArgs) Handles btnAddSource.Click
+
+        Dim dlg As New dlgSourceCodeName
+
+        Me.Opacity = 0.7
+        If dlg.ShowDialog() = Windows.Forms.DialogResult.Cancel Then
+            Me.Opacity = 1.0
+            Exit Sub
+        End If
+        Me.Opacity = 1.0
+
+        If _mySourceCodes.ContainsKey(dlg.SourceFileName) Then
+            MessageBox.Show("A VisiBoole Source Code file with this name already exists.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1)
+            Exit Sub
+        End If
+
+        _mySourceCodes.Add(dlg.SourceFileName, New cSourceFile(dlg.SourceFileName))
+        RefreshSourceCodeBindings()
+
+    End Sub
+
+    ''' <summary>
+    ''' Simulates the deletion of the selected source code file
+    ''' </summary>
+    Private Sub btnDelSource_Click(sender As Object, e As EventArgs) Handles btnDelSource.Click
+
+        If DialogResult.No = MessageBox.Show("This will irreversably destroy this item - do you wish to proceed?", "Confirm", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button1) Then Exit Sub
+
+        _mySourceCodes.Remove(lboSource.SelectedValue.Name)
+
+        RefreshSourceCodeBindings()
+
+    End Sub
+
+    ''' <summary>
+    ''' Displays the content of the selected source code file in the editor
+    ''' </summary>
+    Private Sub lboSource_SelectedIndexChanged(sender As Object, e As EventArgs) Handles lboSource.SelectedIndexChanged
+
+        _currentDisplay.DisplayInput(sender.SelectedValue.Text)
+
+    End Sub
+
+#End Region
 
 End Class

@@ -27,8 +27,10 @@ Partial Class ctlSplitHorizontal
         Me.rteOutput = New System.Windows.Forms.RichTextBox()
         Me.pnlEditorControls = New System.Windows.Forms.TableLayoutPanel()
         Me.btnRun = New System.Windows.Forms.Button()
-        Me.txtIndependentVars = New System.Windows.Forms.TextBox()
+        Me.btnClear = New System.Windows.Forms.Button()
+        Me.btnSave = New System.Windows.Forms.Button()
         Me.pnlOutputControls = New System.Windows.Forms.TableLayoutPanel()
+        Me.txtIndependentVars = New System.Windows.Forms.TextBox()
         Me.btnTick = New System.Windows.Forms.Button()
         Me.udTickCount = New System.Windows.Forms.NumericUpDown()
         Me.pnlMain.SuspendLayout()
@@ -77,11 +79,14 @@ Partial Class ctlSplitHorizontal
         'pnlEditorControls
         '
         Me.pnlEditorControls.BackColor = System.Drawing.Color.Transparent
-        Me.pnlEditorControls.ColumnCount = 2
+        Me.pnlEditorControls.ColumnCount = 4
+        Me.pnlEditorControls.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle())
+        Me.pnlEditorControls.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle())
         Me.pnlEditorControls.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
         Me.pnlEditorControls.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle())
-        Me.pnlEditorControls.Controls.Add(Me.btnRun, 1, 0)
-        Me.pnlEditorControls.Controls.Add(Me.txtIndependentVars, 0, 0)
+        Me.pnlEditorControls.Controls.Add(Me.btnRun, 3, 0)
+        Me.pnlEditorControls.Controls.Add(Me.btnClear, 0, 0)
+        Me.pnlEditorControls.Controls.Add(Me.btnSave, 1, 0)
         Me.pnlEditorControls.Dock = System.Windows.Forms.DockStyle.Fill
         Me.pnlEditorControls.Location = New System.Drawing.Point(3, 318)
         Me.pnlEditorControls.Name = "pnlEditorControls"
@@ -100,24 +105,34 @@ Partial Class ctlSplitHorizontal
         Me.btnRun.Text = "Run"
         Me.btnRun.UseVisualStyleBackColor = True
         '
-        'txtIndependentVars
+        'btnClear
         '
-        Me.txtIndependentVars.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.txtIndependentVars.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.txtIndependentVars.Location = New System.Drawing.Point(3, 3)
-        Me.txtIndependentVars.Name = "txtIndependentVars"
-        Me.txtIndependentVars.ReadOnly = True
-        Me.txtIndependentVars.Size = New System.Drawing.Size(707, 22)
-        Me.txtIndependentVars.TabIndex = 1
+        Me.btnClear.Location = New System.Drawing.Point(3, 3)
+        Me.btnClear.Name = "btnClear"
+        Me.btnClear.Size = New System.Drawing.Size(75, 23)
+        Me.btnClear.TabIndex = 1
+        Me.btnClear.Text = "&Clear"
+        Me.btnClear.UseVisualStyleBackColor = True
+        '
+        'btnSave
+        '
+        Me.btnSave.Location = New System.Drawing.Point(84, 3)
+        Me.btnSave.Name = "btnSave"
+        Me.btnSave.Size = New System.Drawing.Size(75, 23)
+        Me.btnSave.TabIndex = 2
+        Me.btnSave.Text = "&Save"
+        Me.btnSave.UseVisualStyleBackColor = True
         '
         'pnlOutputControls
         '
         Me.pnlOutputControls.BackColor = System.Drawing.Color.Transparent
-        Me.pnlOutputControls.ColumnCount = 2
+        Me.pnlOutputControls.ColumnCount = 3
         Me.pnlOutputControls.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
         Me.pnlOutputControls.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle())
-        Me.pnlOutputControls.Controls.Add(Me.btnTick, 1, 0)
-        Me.pnlOutputControls.Controls.Add(Me.udTickCount, 0, 0)
+        Me.pnlOutputControls.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle())
+        Me.pnlOutputControls.Controls.Add(Me.txtIndependentVars, 0, 0)
+        Me.pnlOutputControls.Controls.Add(Me.btnTick, 2, 0)
+        Me.pnlOutputControls.Controls.Add(Me.udTickCount, 1, 0)
         Me.pnlOutputControls.Dock = System.Windows.Forms.DockStyle.Fill
         Me.pnlOutputControls.Location = New System.Drawing.Point(3, 668)
         Me.pnlOutputControls.Name = "pnlOutputControls"
@@ -125,6 +140,17 @@ Partial Class ctlSplitHorizontal
         Me.pnlOutputControls.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
         Me.pnlOutputControls.Size = New System.Drawing.Size(794, 29)
         Me.pnlOutputControls.TabIndex = 3
+        '
+        'txtIndependentVars
+        '
+        Me.txtIndependentVars.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.txtIndependentVars.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.txtIndependentVars.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.txtIndependentVars.Location = New System.Drawing.Point(3, 3)
+        Me.txtIndependentVars.Name = "txtIndependentVars"
+        Me.txtIndependentVars.ReadOnly = True
+        Me.txtIndependentVars.Size = New System.Drawing.Size(657, 22)
+        Me.txtIndependentVars.TabIndex = 2
         '
         'btnTick
         '
@@ -154,8 +180,8 @@ Partial Class ctlSplitHorizontal
         Me.Tag = "Horizontal"
         Me.pnlMain.ResumeLayout(False)
         Me.pnlEditorControls.ResumeLayout(False)
-        Me.pnlEditorControls.PerformLayout()
         Me.pnlOutputControls.ResumeLayout(False)
+        Me.pnlOutputControls.PerformLayout()
         CType(Me.udTickCount, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
@@ -169,5 +195,7 @@ Partial Class ctlSplitHorizontal
     Friend WithEvents btnTick As System.Windows.Forms.Button
     Friend WithEvents udTickCount As System.Windows.Forms.NumericUpDown
     Friend WithEvents txtIndependentVars As System.Windows.Forms.TextBox
+    Friend WithEvents btnClear As System.Windows.Forms.Button
+    Friend WithEvents btnSave As System.Windows.Forms.Button
 
 End Class

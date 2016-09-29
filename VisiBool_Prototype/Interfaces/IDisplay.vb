@@ -3,12 +3,14 @@
 ''' </summary>
 Public Interface IDisplay
 
-    Property Editor As RichTextBox
+    Function GetInput() As String
 
     Sub DisplayInput(pInput As String)
 
     Sub AppendInput(pInput As String)
 
     Sub DisplayOutput()
+
+    Sub DisplayIndependentVars()
 
 End Interface

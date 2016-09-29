@@ -24,22 +24,24 @@ Partial Class ctlSplitTabbed
     Private Sub InitializeComponent()
         Me.TabControl1 = New System.Windows.Forms.TabControl()
         Me.tabEditor = New System.Windows.Forms.TabPage()
-        Me.tabOutput = New System.Windows.Forms.TabPage()
         Me.pnlEditorMain = New System.Windows.Forms.TableLayoutPanel()
         Me.pnlEditorControls = New System.Windows.Forms.TableLayoutPanel()
         Me.btnRun = New System.Windows.Forms.Button()
-        Me.txtIndependentVars = New System.Windows.Forms.TextBox()
+        Me.btnClear = New System.Windows.Forms.Button()
+        Me.btnSave = New System.Windows.Forms.Button()
+        Me.rteEditor = New System.Windows.Forms.RichTextBox()
+        Me.tabOutput = New System.Windows.Forms.TabPage()
         Me.pnlOutputMain = New System.Windows.Forms.TableLayoutPanel()
         Me.pnlOutputControls = New System.Windows.Forms.TableLayoutPanel()
+        Me.txtIndependentVars = New System.Windows.Forms.TextBox()
         Me.btnTick = New System.Windows.Forms.Button()
         Me.udTickCount = New System.Windows.Forms.NumericUpDown()
         Me.rteOutput = New System.Windows.Forms.RichTextBox()
-        Me.rteEditor = New System.Windows.Forms.RichTextBox()
         Me.TabControl1.SuspendLayout()
         Me.tabEditor.SuspendLayout()
-        Me.tabOutput.SuspendLayout()
         Me.pnlEditorMain.SuspendLayout()
         Me.pnlEditorControls.SuspendLayout()
+        Me.tabOutput.SuspendLayout()
         Me.pnlOutputMain.SuspendLayout()
         Me.pnlOutputControls.SuspendLayout()
         CType(Me.udTickCount, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -68,17 +70,6 @@ Partial Class ctlSplitTabbed
         Me.tabEditor.Text = "Editor"
         Me.tabEditor.UseVisualStyleBackColor = True
         '
-        'tabOutput
-        '
-        Me.tabOutput.Controls.Add(Me.pnlOutputMain)
-        Me.tabOutput.Location = New System.Drawing.Point(4, 27)
-        Me.tabOutput.Name = "tabOutput"
-        Me.tabOutput.Padding = New System.Windows.Forms.Padding(3)
-        Me.tabOutput.Size = New System.Drawing.Size(792, 669)
-        Me.tabOutput.TabIndex = 1
-        Me.tabOutput.Text = "Run"
-        Me.tabOutput.UseVisualStyleBackColor = True
-        '
         'pnlEditorMain
         '
         Me.pnlEditorMain.ColumnCount = 1
@@ -96,11 +87,14 @@ Partial Class ctlSplitTabbed
         '
         'pnlEditorControls
         '
-        Me.pnlEditorControls.ColumnCount = 2
+        Me.pnlEditorControls.ColumnCount = 4
+        Me.pnlEditorControls.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle())
+        Me.pnlEditorControls.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle())
         Me.pnlEditorControls.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
         Me.pnlEditorControls.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle())
-        Me.pnlEditorControls.Controls.Add(Me.btnRun, 1, 0)
-        Me.pnlEditorControls.Controls.Add(Me.txtIndependentVars, 0, 0)
+        Me.pnlEditorControls.Controls.Add(Me.btnRun, 3, 0)
+        Me.pnlEditorControls.Controls.Add(Me.btnClear, 0, 0)
+        Me.pnlEditorControls.Controls.Add(Me.btnSave, 1, 0)
         Me.pnlEditorControls.Dock = System.Windows.Forms.DockStyle.Fill
         Me.pnlEditorControls.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.pnlEditorControls.Location = New System.Drawing.Point(3, 632)
@@ -121,15 +115,43 @@ Partial Class ctlSplitTabbed
         Me.btnRun.Text = "Run"
         Me.btnRun.UseVisualStyleBackColor = True
         '
-        'txtIndependentVars
+        'btnClear
         '
-        Me.txtIndependentVars.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.txtIndependentVars.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.txtIndependentVars.Location = New System.Drawing.Point(3, 3)
-        Me.txtIndependentVars.Name = "txtIndependentVars"
-        Me.txtIndependentVars.ReadOnly = True
-        Me.txtIndependentVars.Size = New System.Drawing.Size(693, 22)
-        Me.txtIndependentVars.TabIndex = 1
+        Me.btnClear.Location = New System.Drawing.Point(3, 3)
+        Me.btnClear.Name = "btnClear"
+        Me.btnClear.Size = New System.Drawing.Size(75, 22)
+        Me.btnClear.TabIndex = 1
+        Me.btnClear.Text = "&Clear"
+        Me.btnClear.UseVisualStyleBackColor = True
+        '
+        'btnSave
+        '
+        Me.btnSave.Location = New System.Drawing.Point(84, 3)
+        Me.btnSave.Name = "btnSave"
+        Me.btnSave.Size = New System.Drawing.Size(75, 22)
+        Me.btnSave.TabIndex = 2
+        Me.btnSave.Text = "&Save"
+        Me.btnSave.UseVisualStyleBackColor = True
+        '
+        'rteEditor
+        '
+        Me.rteEditor.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.rteEditor.Location = New System.Drawing.Point(3, 3)
+        Me.rteEditor.Name = "rteEditor"
+        Me.rteEditor.Size = New System.Drawing.Size(780, 623)
+        Me.rteEditor.TabIndex = 1
+        Me.rteEditor.Text = ""
+        '
+        'tabOutput
+        '
+        Me.tabOutput.Controls.Add(Me.pnlOutputMain)
+        Me.tabOutput.Location = New System.Drawing.Point(4, 27)
+        Me.tabOutput.Name = "tabOutput"
+        Me.tabOutput.Padding = New System.Windows.Forms.Padding(3)
+        Me.tabOutput.Size = New System.Drawing.Size(792, 669)
+        Me.tabOutput.TabIndex = 1
+        Me.tabOutput.Text = "Output"
+        Me.tabOutput.UseVisualStyleBackColor = True
         '
         'pnlOutputMain
         '
@@ -148,11 +170,13 @@ Partial Class ctlSplitTabbed
         '
         'pnlOutputControls
         '
-        Me.pnlOutputControls.ColumnCount = 2
+        Me.pnlOutputControls.ColumnCount = 3
         Me.pnlOutputControls.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
         Me.pnlOutputControls.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle())
-        Me.pnlOutputControls.Controls.Add(Me.btnTick, 1, 0)
-        Me.pnlOutputControls.Controls.Add(Me.udTickCount, 0, 0)
+        Me.pnlOutputControls.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle())
+        Me.pnlOutputControls.Controls.Add(Me.txtIndependentVars, 0, 0)
+        Me.pnlOutputControls.Controls.Add(Me.btnTick, 2, 0)
+        Me.pnlOutputControls.Controls.Add(Me.udTickCount, 1, 0)
         Me.pnlOutputControls.Dock = System.Windows.Forms.DockStyle.Fill
         Me.pnlOutputControls.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.pnlOutputControls.Location = New System.Drawing.Point(3, 632)
@@ -161,6 +185,17 @@ Partial Class ctlSplitTabbed
         Me.pnlOutputControls.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
         Me.pnlOutputControls.Size = New System.Drawing.Size(780, 28)
         Me.pnlOutputControls.TabIndex = 0
+        '
+        'txtIndependentVars
+        '
+        Me.txtIndependentVars.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.txtIndependentVars.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.txtIndependentVars.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.txtIndependentVars.Location = New System.Drawing.Point(3, 3)
+        Me.txtIndependentVars.Name = "txtIndependentVars"
+        Me.txtIndependentVars.ReadOnly = True
+        Me.txtIndependentVars.Size = New System.Drawing.Size(643, 22)
+        Me.txtIndependentVars.TabIndex = 2
         '
         'btnTick
         '
@@ -191,15 +226,6 @@ Partial Class ctlSplitTabbed
         Me.rteOutput.TabIndex = 1
         Me.rteOutput.Text = ""
         '
-        'rteEditor
-        '
-        Me.rteEditor.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.rteEditor.Location = New System.Drawing.Point(0, 3)
-        Me.rteEditor.Name = "rteEditor"
-        Me.rteEditor.Size = New System.Drawing.Size(783, 626)
-        Me.rteEditor.TabIndex = 1
-        Me.rteEditor.Text = ""
-        '
         'ctlSplitTabbed
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -210,12 +236,12 @@ Partial Class ctlSplitTabbed
         Me.Tag = "Tabbed"
         Me.TabControl1.ResumeLayout(False)
         Me.tabEditor.ResumeLayout(False)
-        Me.tabOutput.ResumeLayout(False)
         Me.pnlEditorMain.ResumeLayout(False)
         Me.pnlEditorControls.ResumeLayout(False)
-        Me.pnlEditorControls.PerformLayout()
+        Me.tabOutput.ResumeLayout(False)
         Me.pnlOutputMain.ResumeLayout(False)
         Me.pnlOutputControls.ResumeLayout(False)
+        Me.pnlOutputControls.PerformLayout()
         CType(Me.udTickCount, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
@@ -226,12 +252,14 @@ Partial Class ctlSplitTabbed
     Friend WithEvents pnlEditorControls As System.Windows.Forms.TableLayoutPanel
     Friend WithEvents btnRun As System.Windows.Forms.Button
     Friend WithEvents tabOutput As System.Windows.Forms.TabPage
-    Friend WithEvents txtIndependentVars As System.Windows.Forms.TextBox
     Friend WithEvents pnlOutputMain As System.Windows.Forms.TableLayoutPanel
     Friend WithEvents pnlOutputControls As System.Windows.Forms.TableLayoutPanel
     Friend WithEvents btnTick As System.Windows.Forms.Button
     Friend WithEvents udTickCount As System.Windows.Forms.NumericUpDown
     Friend WithEvents rteEditor As System.Windows.Forms.RichTextBox
     Friend WithEvents rteOutput As System.Windows.Forms.RichTextBox
+    Friend WithEvents txtIndependentVars As System.Windows.Forms.TextBox
+    Friend WithEvents btnClear As System.Windows.Forms.Button
+    Friend WithEvents btnSave As System.Windows.Forms.Button
 
 End Class

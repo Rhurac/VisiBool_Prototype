@@ -38,12 +38,6 @@ Public Class cGlobals
     End Function
 
     ''' <summary>
-    ''' Generic Lorem Ipsum text 
-    ''' </summary>
-    ''' <remarks>Used to simulate pushing text to the editor control of the current display</remarks>
-    Public Shared gEditorInput As String = "Lorem ipsum dolor sit amet, vitae eu tellus dolor eleifend nascetur sed, commodo etiam varius, eu varius risus mattis condimentum nam, aenean sollicitudin ut praesent non. Suscipit orci vitae erat nullam at, sed gravida lectus rutrum, diam at lectus malesuada lobortis commodo fugit. Convallis bibendum ridiculus eros ut, feugiat class ultrices vestibulum nullam vehicula, volutpat mauris eros felis dolor sagittis, wisi quam quisque orci sapien, eu rhoncus. Vitae morbi libero. Massa proin vel ut molestie, bibendum ultrices felis vulputate lobortis pulvinar, et lorem turpis imperdiet morbi egestas sed. Vestibulum sagittis vivamus, etiam tristique sit nisl vitae varius, interdum magna amet vivamus. Praesent purus nulla, massa eu nullam ac mauris nunc, sed pulvinar tortor, quis consequat feugiat. Tellus vivamus, sollicitudin purus, consequat mauris interdum tellus ultrices morbi."
-
-    ''' <summary>
     ''' Fade-In animation for the given System.Windows.Form
     ''' </summary>
     ''' <param name="pForm">The System.Windows.Form to fade in</param>
@@ -80,6 +74,8 @@ Public Class cGlobals
                                  pForm.Opacity -= 0.05
                                  If pForm.Opacity <= 0 Then tmr.Enabled = False
                              End Sub
+        tmr.Enabled = True
+
     End Sub
 
 End Class

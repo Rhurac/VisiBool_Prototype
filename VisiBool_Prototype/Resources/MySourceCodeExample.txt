@@ -1,0 +1,18 @@
+This is a simulation of a sample user-created source code file.
+
+
+	Your source code files are located in the 'Source Code' tab to the left.
+
+These files represent the visiboole source codes that you are creating. You
+
+can use the functions you create within your source code files to assist you.
+
+These functions are located in the Functions tab to the left as well. In both
+
+tabs you may add or remove a function/file by using the buttons located on the 
+
+bottom of the displayed list. Additionally, you may preview the function
+
+content by double-clicking it; you may add it to your source code in the
+
+editor by right-clicking the function.

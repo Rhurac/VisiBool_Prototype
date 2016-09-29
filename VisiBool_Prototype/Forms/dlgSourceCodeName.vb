@@ -1,15 +1,15 @@
 ﻿''' <summary>
-''' Displays a dialog for choosing the name of a user-created VisiBoole function
+''' Displays a dialog for choosing the name of a user-created VisiBoole source code file
 ''' </summary>
-Public Class dlgFunctionName
+Public Class dlgSourceCodeName
 
     ''' <summary>
     ''' The name of the property to be created
     ''' </summary>
-    Public Property FunctionName As String
+    Public Property SourceFileName As String
 
     ''' <summary>
-    ''' Constructs an instance of dlgFunctionName
+    ''' Constructs an instance of dlgSourceCodeName
     ''' </summary>
     Public Sub New()
 
@@ -20,16 +20,16 @@ Public Class dlgFunctionName
     End Sub
 
     ''' <summary>
-    ''' Initializes the dialog with a default function name
+    ''' Initializes the dialog with a default source code file name
     ''' </summary>
-    Private Sub dlgFunctionName_Load(sender As Object, e As EventArgs) Handles Me.Load
+    Private Sub dlgSourceCodeName_Load(sender As Object, e As EventArgs) Handles Me.Load
 
-        FunctionName = "NewFunc()"
-        txtFunctionName.Text = FunctionName
+        SourceFileName = "New Sample Source Code File"
+        txtSourceFileName.Text = SourceFileName
 
-        txtFunctionName.SelectionStart = 0
-        txtFunctionName.SelectionLength = FunctionName.Length
-        txtFunctionName.Focus()
+        txtSourceFileName.SelectionStart = 0
+        txtSourceFileName.SelectionLength = SourceFileName.Length
+        txtSourceFileName.Focus()
 
     End Sub
 
@@ -58,19 +58,13 @@ Public Class dlgFunctionName
     End Sub
 
     ''' <summary>
-    ''' Stores the selected Function Name
+    ''' Stores the selected source code file name
     ''' </summary>
     ''' <remarks>Assumes that the Validating event passed the check</remarks>
-    Private Sub txtFunctionName_Validated(sender As Object, e As EventArgs) Handles txtFunctionName.Validated
+    Private Sub txtFunctionName_Validated(sender As Object, e As EventArgs) Handles txtSourceFileName.Validated
 
-        FunctionName = sender.Text.Trim()
-
-    End Sub
-
-    Private Sub lblMessage_Click(sender As Object, e As EventArgs) Handles lblMessage.Click
+        SourceFileName = sender.Text.Trim()
 
     End Sub
-    Private Sub txtFunctionName_TextChanged(sender As Object, e As EventArgs) Handles txtFunctionName.TextChanged
 
-    End Sub
 End Class

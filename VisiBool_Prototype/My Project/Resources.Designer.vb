@@ -132,6 +132,15 @@ Namespace My.Resources
         End Property
         
         '''<summary>
+        '''  Looks up a localized string similar to This is a simulation of a sample user-created source code file.
+        '''</summary>
+        Friend ReadOnly Property MySourceCodeExample() As String
+            Get
+                Return ResourceManager.GetString("MySourceCodeExample", resourceCulture)
+            End Get
+        End Property
+        
+        '''<summary>
         '''  Looks up a localized string similar to w x y z   %b{w x y z}   %h{w x y z};
         '''
         '''zero  = ~w ~x ~y ~z;
