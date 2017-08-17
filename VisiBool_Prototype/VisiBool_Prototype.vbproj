@@ -182,6 +182,7 @@
     <Content Include="Resources\MySourceCodeExample.txt" />
     <Content Include="Resources\SevenSegOutput.txt" />
     <Content Include="Resources\seven_seg_display.txt" />
+    <Content Include="TextFile1.txt" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\V.ico" />
